@@ -2,7 +2,7 @@
 
 Paweł Taborowski
 
-Program do przechowywania linków do przydatnych stron. oprogramowanie zostało stworzone, by ograniczać liczbę otwartych kart, a jednocześnie mieć wszystkie przydatne strony pod ręką.
+Program do przechowywania linków do przydatnych stron. Oprogramowanie zostało stworzone, by ograniczać liczbę otwartych kart, a jednocześnie mieć wszystkie przydatne strony pod ręką.
 
 ## Cechy
 * Linki do stron zapisywane i zarządzane ręcznie w prostym i intuicyjnym pliku `strony.js`

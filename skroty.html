@@ -18,6 +18,14 @@
     column-fill: auto;
     display: inline-block;
   }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0
+  }
+  h2.drop{
+    font-family: monospace;
+  }
   </style>
 </head>
 <body>
@@ -32,29 +40,53 @@ function init(mapInput){
 
 function pages(){
   var out = "";
+  var hidByDefault = []
   var title = "<h1>Użyteczne strony</h1>";
   for (var sectionTitle in map) {
-    out += "<h2 style=\"cursor: pointer; display: inline-block;\" onclick=\"focusSection('" + sectionTitle + "')\">" + sectionTitle + "</h2><br />";
+    if (sectionTitle.charAt(0) == "$") hidByDefault.push(sectionTitle)
+    out += "<table><tr><td><h2 class=\"drop\" id=\"" + sectionTitle + "Drop\" onclick=\"hideSection('" + sectionTitle + "');\">-</h2></td><td><h2 style=\"cursor: pointer; display: inline-block;\" onclick=\"focusSection('" + sectionTitle + "')\">" + renderSectionTitle(sectionTitle) + "</h2></td></tr></table>";
     out += iterateSection(sectionTitle);
   }
   document.getElementById("h1title").innerHTML = title;
   document.getElementById("content").innerHTML = out;
+
+  // document.write(hidByDefault)
+  hidByDefault.forEach(function(value){hideSection(value)});
+  // for (var toBeHidden in hidByDefault) document.write(toBeHidden);
 }
 
 function focusSection(sectionTitle){
   var out = "";
   out += iterateSection(sectionTitle);
-  document.getElementById("h1title").innerHTML = "<table><tr><td><h1>" + sectionTitle +"</h1></td><td width=\"10px\"></td><td><a class=\"btn btn-secondary\" href=\"#\" onclick=\"pages()\">Wstecz</a></td></tr></table>";
+  document.getElementById("h1title").innerHTML = "<table><tr><td><h1>" + renderSectionTitle(sectionTitle) +"</h1></td><td width=\"10px\"></td><td><a class=\"btn btn-secondary\" href=\"#\" onclick=\"pages()\">Wstecz</a></td></tr></table>";
   document.getElementById("content").innerHTML = out;
 }
 
 function iterateSection(sectionTitle){
-  var out = "";
+  var out = "<ul id=\"" + sectionTitle + "List\">";
   var section = map[sectionTitle];
   for (var page in section){
-    out += "<a href=\"" + section[page][1] + "\" target=\"_blank\" >" + section[page][0] + "</a><br />";
+    out += "<li><a href=\"" + section[page][1] + "\" target=\"_blank\" >" + section[page][0] + "</a></li>";
   }
+  out += "</ul>"
   return out;
+}
+
+function hideSection(sectionTitle){
+  document.getElementById(sectionTitle + "List").style.display = "None";
+  document.getElementById(sectionTitle + "Drop").innerHTML = "+";
+  document.getElementById(sectionTitle + "Drop").onclick = function(){showSection(sectionTitle)}
+}
+
+function showSection(sectionTitle){
+  document.getElementById(sectionTitle + "List").style.display = "Inline";
+  document.getElementById(sectionTitle + "Drop").innerHTML = "-";
+  document.getElementById(sectionTitle + "Drop").onclick = function(){hideSection(sectionTitle)}
+}
+
+function renderSectionTitle(title){
+  if (title.charAt(0) == "$") title = title.substr(1);
+  return title
 }
 </script>
 <script src="strony.js"></script>
