@@ -8,6 +8,7 @@ Program do przechowywania linków do przydatnych stron. Oprogramowanie zostało 
 * Linki do stron zapisywane i zarządzane ręcznie w prostym i intuicyjnym pliku `strony.js`
 * Podział na sekcje
 * Wyświetlanie tylko pojedynczej sekcji po kliknięciu jej tytułu
+* Ukrywanie zawartości sekcji na żądanie lub domyślnie (nazwa sekcji zaczynająca się od `$`)
 * Strona ze skrótami przyrasta w poziomie, tworzą się kolejne kolumny
 * Lekkie rozwiązanie, statyczna strona bez back-endu
 * Strony zawsze otwierane w nowych kartach
