@@ -1,5 +1,5 @@
 init({"Foo": [
-  ["Google", "https://www.google.com/"],
+  ["Google", "https://www.google.com/", "Wiadomość wpisana tutaj pojawi się jako dodatkowa informacja przy linku."],
   ["GitHub", "https://github.com/"],
   ["Peantab @ GitHub", "https://github.com/Peantab"],
 ],
